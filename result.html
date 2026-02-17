@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antwort 💘</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="flower" id="flower">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <h2 id="message"></h2>
+
+    <!-- WhatsApp Button (anfangs versteckt) -->
+    <a id="whatsappBtn" href="#" class="whatsapp-btn" style="display:none;">Auf WhatsApp senden 💬</a>
+
+    <!-- Return Button -->
+    <a href="index.html" class="back-btn" id="returnBtn">Zurück zur Frage 💞</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("answer");
+    const message = document.getElementById("message");
+    const flower = document.getElementById("flower");
+    const whatsappBtn = document.getElementById("whatsappBtn");
+    const returnBtn = document.getElementById("returnBtn");
+
+    let answerText = "";
+
+    if (type === "yes1") {
+      message.innerHTML = "Ich freueee michhh 😍♥️🌹";
+      flower.style.display = "block";
+
+      whatsappBtn.style.display = "inline-block";
+      returnBtn.style.display = "none"; // ❌ zurück-Button weg
+
+      answerText = "Wohoooo auf jeden Fall 💕";
+
+    } else if (type === "yes2") {
+      message.innerHTML = "Ich hätte mir etwas mehr Enthusiasmus gewünscht, versuch noch mal! 😄";
+      flower.style.display = "none";
+
+      whatsappBtn.style.display = "none";
+      returnBtn.style.display = "inline-block"; // ✔ bleibt
+
+      answerText = "JAAA 💖";
+
+    } else {
+      message.innerHTML = "Unbekannte Antwort 💭";
+      flower.style.display = "none";
+      whatsappBtn.style.display = "none";
+      returnBtn.style.display = "inline-block";
+    }
+
+    const phoneNumber = "4917632371605"; 
+    const text = encodeURIComponent(
+      `Ich habe auf deine Frage geantwortet: "${answerText}" 💌`
+    );
+    whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${text}`;
+  </script>
+
+</body>
+</html>
