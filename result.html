@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="flower" id="flower">
+    <div class="flower" id="flower" style="display: none;">
       <span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span>
     </div>
@@ -16,15 +16,20 @@
     <h2 id="message"></h2>
 
     <!-- WhatsApp Button (anfangs versteckt) -->
-    <a id="whatsappBtn" href="#" class="whatsapp-btn" style="display:none;">Auf WhatsApp senden 💬</a>
+    <a id="whatsappBtn" href="#" class="whatsapp-btn" style="display:none;">
+      Auf WhatsApp senden 💬
+    </a>
 
     <!-- Return Button -->
-    <a href="index.html" class="back-btn" id="returnBtn">Zurück zur Frage 💞</a>
+    <a href="index.html" class="back-btn" id="returnBtn">
+      Zurück zur Frage 💞
+    </a>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const type = params.get("answer");
+
     const message = document.getElementById("message");
     const flower = document.getElementById("flower");
     const whatsappBtn = document.getElementById("whatsappBtn");
@@ -33,36 +38,41 @@
     let answerText = "";
 
     if (type === "yes1") {
-      message.innerHTML = "Ich freueee michhh 😍♥️🌹";
+      message.textContent = 
+        "Ich freue mich 😍♥️🌹 Dann wie wäre es mit 19:30 bei mir zuhause? 😌";
+
       flower.style.display = "block";
-
       whatsappBtn.style.display = "inline-block";
-      returnBtn.style.display = "none"; // ❌ zurück-Button weg
+      returnBtn.style.display = "none";
 
-      answerText = "Wohoooo auf jeden Fall 💕";
+      answerText = "Wohoooo, auf jeden Fall 💕";
 
     } else if (type === "yes2") {
-      message.innerHTML = "Ich hätte mir etwas mehr Enthusiasmus gewünscht, versuch noch mal! 😄";
-      flower.style.display = "none";
+      message.textContent = 
+        "Ich hätte mir etwas mehr Enthusiasmus gewünscht, versuch es noch mal! 😄";
 
+      flower.style.display = "none";
       whatsappBtn.style.display = "none";
-      returnBtn.style.display = "inline-block"; // ✔ bleibt
+      returnBtn.style.display = "inline-block";
 
       answerText = "JAAA 💖";
 
     } else {
-      message.innerHTML = "Unbekannte Antwort 💭";
+      message.textContent = "Unbekannte Antwort 💭";
+
       flower.style.display = "none";
       whatsappBtn.style.display = "none";
       returnBtn.style.display = "inline-block";
+
+      answerText = "Hey 💕";
     }
 
-    const phoneNumber = "4917632371605"; 
-    const text = encodeURIComponent(
-      `Ich habe auf deine Frage geantwortet: "${answerText}" 💌`
-    );
-    whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${text}`;
-  </script>
+    const phoneNumber = "4917632371605";
 
+    if (whatsappBtn.style.display !== "none") {
+      const text = encodeURIComponent(`"${answerText}" 💌`);
+      whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${text}`;
+    }
+  </script>
 </body>
 </html>
